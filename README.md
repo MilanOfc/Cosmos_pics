@@ -1,2 +1,2 @@
-# Cosmos_pics
+# space_pics
 4th lesson from devman
