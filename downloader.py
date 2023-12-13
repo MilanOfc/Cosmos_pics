@@ -1,8 +1,9 @@
 import requests
+import os
 from pathlib import Path
 from urllib.parse import urlparse, unquote
 from os.path import splitext, basename
-
+from dotenv import load_dotenv
 
 def download_pic(url, path):
     if url is None:
@@ -23,3 +24,6 @@ def get_file_format(url):
     if name_format_tuple[1]:  # вопрос про функцию в целом и название переменной
         return name_format_tuple[1]
     return name_format_tuple[0]
+
+load_dotenv()
+nasa_token = os.environ['NASA_TOKEN']

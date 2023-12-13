@@ -1,6 +1,8 @@
 import requests
 import datetime
-from helper import download_pic
+import argparse
+import downloader
+import sys
 
 
 def get_epic_links(api_key, date=None):
@@ -23,4 +25,24 @@ def get_epic_links(api_key, date=None):
 
 def download_epic_pics(api_key, date=None):
     for epic_link in get_epic_links(api_key, date=date):
-        download_pic(epic_link, './epic')
+        downloader.download_pic(epic_link, './pictures')
+
+
+def datetime_valid(dt_str):
+    try:
+        datetime.datetime.fromisoformat(dt_str)
+    except ValueError:
+        return True
+    return False
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--date', help='the date from which you want to upload the images. '
+                                             'Format YYYY-MM-DD')
+    args = parser.parse_args()
+    date = args.date
+    if datetime_valid(date):
+        print('Wrong date format, try --help for more information')
+        sys.exit()
+    download_epic_pics(downloader.nasa_token, date)

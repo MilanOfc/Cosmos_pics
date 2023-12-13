@@ -1,9 +1,10 @@
 import requests
-from helper import download_pic
+import downloader
+import argparse
 
 
 def get_apod_pics_links(count, api_key):
-    nasa_url = 'https://api.nasa.gov/planetary/apod'
+    nasa_url = 'https://api.nasa.gov/planetary/apod/'
     params = {'api_key': api_key, 'count': count}
     response = requests.get(nasa_url, params=params)
     response.raise_for_status()
@@ -13,6 +14,17 @@ def get_apod_pics_links(count, api_key):
     return links
 
 
-def download_apod_pics(count, api_key):
+def download_apod_pics(api_key, count=10):
     for link in get_apod_pics_links(count, api_key):
-        download_pic(link, './apod')
+        downloader.download_pic(link, './pictures')
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--count', type=int, help='amount of pictures you want to download, 10 by default')
+    args = parser.parse_args()
+    count = args.count
+    if count:
+        download_apod_pics(downloader.nasa_token, count)
+    else:
+        download_apod_pics(downloader.nasa_token)

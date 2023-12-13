@@ -10,5 +10,5 @@ load_dotenv()
 nasa_token = os.environ['NASA_TOKEN']
 for id in SPACEX_IDS:
     fetch_spacex_launch(id)
-download_apod_pics(30, nasa_token)
+download_apod_pics(nasa_token, 30)
 download_epic_pics(nasa_token, date='2023-01-10')
