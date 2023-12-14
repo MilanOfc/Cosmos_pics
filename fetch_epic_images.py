@@ -42,7 +42,11 @@ if __name__ == '__main__':
                                              'Format YYYY-MM-DD')
     args = parser.parse_args()
     date = args.date
-    if datetime_valid(date):
-        print('Wrong date format, try --help for more information')
-        sys.exit()
-    download_epic_pics(downloader.nasa_token, date)
+    if not date:
+        download_epic_pics(downloader.nasa_token)
+    else:
+        if datetime_valid(date):
+            print('Wrong date format, try --help for more information')
+            sys.exit()
+        download_epic_pics(downloader.nasa_token, date)
+    print('All photos are downloaded')

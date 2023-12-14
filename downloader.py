@@ -21,7 +21,7 @@ def get_file_format(url):
     parsed_url = urlparse(url)
     name = unquote(basename(parsed_url.path))
     name_format_tuple = splitext(name)
-    if name_format_tuple[1]:  # вопрос про функцию в целом и название переменной
+    if name_format_tuple[1]:
         return name_format_tuple[1]
     return name_format_tuple[0]
 

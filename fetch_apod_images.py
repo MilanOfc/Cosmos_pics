@@ -1,3 +1,5 @@
+import sys
+
 import requests
 import downloader
 import argparse
@@ -21,10 +23,16 @@ def download_apod_pics(api_key, count=10):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--count', type=int, help='amount of pictures you want to download, 10 by default')
+    parser.add_argument('-c', '--count', help='amount of pictures you want to download, 10 by default')
     args = parser.parse_args()
     count = args.count
     if count:
+        try:
+            count = int(count)
+        except ValueError:
+            print('Wrong format, you have to use integer number')
+            sys.exit()
         download_apod_pics(downloader.nasa_token, count)
     else:
         download_apod_pics(downloader.nasa_token)
+    print('All photos are downloaded')
