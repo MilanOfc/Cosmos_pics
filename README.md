@@ -37,13 +37,15 @@ Python 3 должен быть уже установлен, с помощью pi
 ### fetch_apod_images.py
 Скачивает NASA "A Picture Of The Day" в папку ./pictures и создает её при необходимости, через флаг 
 -c возможно указать количество фотографий, по умолчанию скачивает 10.
+![img_2](https://github.com/MilanOfc/space_pics/assets/122183166/631dd5f6-a709-4a5a-bdf2-6c7fc75f71cc)
 
-![img_2](https://github.com/MilanOfc/space_pics/assets/122183166/9d3985b0-3ba8-4d56-b262-36d400c2ab40)
+
 
 ### fetch_spacex_images.py
 Скачивает фотографии с запуска SpaceX в папку ./pictures и создает её при необходимости, через флаг 
 -id возможно указать идентификатор полета, по умолчанию скачивает фотографии с последнего запуска.
-![img_3](https://github.com/MilanOfc/space_pics/assets/122183166/8bb88982-00bf-42d7-8166-c473a64d2713)
+![img_3](https://github.com/MilanOfc/space_pics/assets/122183166/baa6e66e-0941-4814-91ac-8a03a2712bdd)
+
 
 ### teleg_bot.py
 Запускает бота, который выкладывает скачанные фотографии в заданный канал.
@@ -54,8 +56,9 @@ Python 3 должен быть уже установлен, с помощью pi
 
 Через флаг -t указывается задержка между постами, так же её можно указать через переменную окружения TIME, по умолчанию задержка 4 часа. 
 Указывается в секундах
+![img_4](https://github.com/MilanOfc/space_pics/assets/122183166/1344cf27-6fa8-4126-adc1-5cbfb766112f)
 
-![image](https://github.com/MilanOfc/space_pics/assets/122183166/4c348be0-c931-452d-a012-6e8fb1affbc3)
+
 
 
 ### downloader.py
