@@ -14,10 +14,6 @@ def get_apod_pics_links(count, api_key):
     return links
 
 
-def download_apod_pics(api_key, count=10):
-    for link in get_apod_pics_links(count, api_key):
-        downloader.download_pic(link, './pictures')
-
 
 if __name__ == '__main__':
     load_dotenv()
