@@ -31,7 +31,8 @@ Python 3 должен быть уже установлен, с помощью pi
 ### fetch_epic_images.py
 Скачивает NASA "The Earth Polychromatic Imaging Camera" в папку ./pictures и создает её при необходимости, через флаг 
 -d возможно указать интересующую дату, по умолчанию скачивает фотографии сегодняшнего дня
-![img_1](https://github.com/MilanOfc/space_pics/assets/122183166/2bfea891-2e4b-4605-aaa2-41b7806c2ff6)
+![img_1](https://github.com/MilanOfc/space_pics/assets/122183166/9ee909fb-2ba1-4510-a6ae-a19f8132803e)
+
 
 ### fetch_apod_images.py
 Скачивает NASA "A Picture Of The Day" в папку ./pictures и создает её при необходимости, через флаг 
