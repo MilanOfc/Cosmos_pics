@@ -2,7 +2,8 @@ import requests
 import datetime
 import argparse
 import downloader
-import sys
+import os
+from dotenv import load_dotenv
 
 
 def get_epic_links(api_key, date=None):
@@ -28,25 +29,20 @@ def download_epic_pics(api_key, date=None):
         downloader.download_pic(epic_link, './pictures')
 
 
-def datetime_valid(dt_str):
+def valid_date(dt_str):
     try:
-        datetime.datetime.fromisoformat(dt_str)
+        return datetime.datetime.strptime(dt_str, "%Y-%m-%d")
     except ValueError:
-        return True
-    return False
+        raise argparse.ArgumentTypeError(f"not a valid date: {dt_str!r}")
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--date', help='the date from which you want to upload the images. '
-                                             'Format YYYY-MM-DD')
+    load_dotenv()
+    nasa_token = os.environ['NASA_TOKEN']
+    parser = argparse.ArgumentParser('downloading "Earth Polychromatic Imaging Camera" from the NASA website\n')
+    parser.add_argument('-d', '--date', type=valid_date, default=None,
+                        help='the date from which you want to upload the images. Format YYYY-MM-DD')
     args = parser.parse_args()
     date = args.date
-    if not date:
-        download_epic_pics(downloader.nasa_token)
-    else:
-        if datetime_valid(date):
-            print('Wrong date format, try --help for more information')
-            sys.exit()
-        download_epic_pics(downloader.nasa_token, date)
+    download_epic_pics(nasa_token, date)
     print('All photos are downloaded')
