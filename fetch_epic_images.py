@@ -10,7 +10,7 @@ def get_epic_links(api_key, date=None):
     api_url = f'https://api.nasa.gov/EPIC/api/natural'
     if date:
         api_url = f'{api_url}/date/{date}'
-    image_url_base = 'https://epic.gsfc.nasa.gov'
+    image_base_url = 'https://epic.gsfc.nasa.gov'
     params = {'api_key': api_key}
     response = requests.get(api_url, params=params)
     response.raise_for_status()
@@ -19,14 +19,9 @@ def get_epic_links(api_key, date=None):
         image_name = image_metadata.get('image')
         image_datetime = datetime.datetime.fromisoformat(image_metadata.get('date'))
         image_date = image_datetime.strftime('%Y/%m/%d')
-        image_url = f'{image_url_base}/archive/natural/{image_date}/png/{image_name}.png'
+        image_url = f'{image_base_url}/archive/natural/{image_date}/png/{image_name}.png'
         links.append(image_url)
     return links
-
-
-def download_epic_pics(api_key, date=None):
-    for epic_link in get_epic_links(api_key, date=date):
-        downloader.download_pic(epic_link, './pictures')
 
 
 def valid_date(dt_str):
@@ -44,5 +39,6 @@ if __name__ == '__main__':
                         help='the date from which you want to upload the images. Format YYYY-MM-DD')
     args = parser.parse_args()
     date = args.date
-    download_epic_pics(nasa_token, date)
+    for epic_link in get_epic_links(nasa_token, date=date):
+        downloader.download_pic(epic_link, './pictures')
     print('All photos are downloaded')

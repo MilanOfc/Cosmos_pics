@@ -10,9 +10,8 @@ def get_apod_pics_links(count, api_key):
     params = {'api_key': api_key, 'count': count}
     response = requests.get(nasa_url, params=params)
     response.raise_for_status()
-    links = [picture_data.get('hdurl') for picture_data in response.json() if picture_data.get('hdurl') is not None]
+    links = [picture_metadata.get('hdurl') for picture_metadata in response.json() if picture_metadata.get('hdurl')]
     return links
-
 
 
 if __name__ == '__main__':
