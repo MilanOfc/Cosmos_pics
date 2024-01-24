@@ -5,7 +5,6 @@ from fetch_apod_images import get_apod_pics_links
 from fetch_epic_images import get_epic_links
 from fetch_spacex_images import download_spacex_pics_links
 
-SPACEX_IDS = ['6243adcaaf52800c6e919254', '61e048bbbe8d8b66799018d0']
 
 if __name__ == '__main__':
     load_dotenv()
