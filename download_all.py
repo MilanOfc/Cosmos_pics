@@ -11,9 +11,8 @@ if __name__ == '__main__':
     load_dotenv()
     nasa_token = os.environ['NASA_TOKEN']
     folder = './pictures'
-    for flight_id in SPACEX_IDS:
-        download_spacex_pics_links()
-    for link in get_apod_pics_links(10, nasa_token):
+    download_spacex_pics_links()
+    for link in get_apod_pics_links(api_key=nasa_token, count=10):
         downloader.download_pic(link, folder)
     for epic_link in get_epic_links(nasa_token):
         downloader.download_pic(epic_link, folder)
